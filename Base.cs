@@ -30,6 +30,7 @@ abstract class Base {
 
             Render();
             win.Display();
+            
         }
     }
     protected abstract void LoadContent();  //Preload
