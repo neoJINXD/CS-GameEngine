@@ -6,9 +6,10 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Audio;
 
+
 namespace UI {
     class Button : Drawable {
-        private RectangleShape button;
+        RectangleShape button;
 
         private readonly int x;
         private readonly int y;
@@ -19,23 +20,28 @@ namespace UI {
         private Color normal = new Color(86, 86, 86);
 
 
-        private Font font;
-        private Text txt;
+        Font local;
+        Text txt;
 
         public Button(int xPos, int yPos, int width, int height, string text, Font font) {
-            this.font = new Font(font);
-            this.txt = new Text(text, this.font);
+            local = new Font(font);
+            txt = new Text(text, local, 32);
 
             this.x = xPos;
             this.y = yPos;
             this.width = width;
             this.height = height;
 
-            this.button = new RectangleShape(new Vector2f(this.width, this.height));
+            button = new RectangleShape(new Vector2f(this.width, this.height));
 
             button.Position = new Vector2f(this.x, this.y);
             button.FillColor = normal;
-            txt.Position = new Vector2f((this.x + this.width) - (txt.Scale.X / 2), (this.y + this.height) - (txt.Scale.Y / 2));
+            
+            float x1 = this.x + txt.CharacterSize/2;
+            float y1 = this.y + button.Size.Y/2 - txt.CharacterSize / 2;
+            
+            txt.Position = new Vector2f(x1, y1);
+            txt.FillColor = Color.Black;
         }
 
         public bool selectedCheck(RenderWindow win) {
@@ -57,15 +63,11 @@ namespace UI {
             }
         }
 
-        public void Draw(RenderWindow win) {
-            win.Draw(this.button);
-            win.Draw(this.txt);
-
-            
-        }
+        
 
         public void Draw(RenderTarget target, RenderStates states) {
             ((Drawable)button).Draw(target, states);
+            txt.Draw(target, states);
         }
     }
 }
