@@ -10,11 +10,10 @@ using GameStateSystem;
 
 class Game : Base {
 
-    public static Stack<BaseState> state = new Stack<BaseState>();
+    public static Stack<BaseState> state = new Stack<BaseState>();  //Stack to store most recent State
 
     public Game(uint size) : base(size, size, "Tilt", Color.Cyan) {
         state.Push(new MainMenu(win));
-
     }
 
 
@@ -34,9 +33,13 @@ class Game : Base {
     protected override void Tick() {
         //Updates the game
         state.Peek().Tick();
+
+        //Uncomment to see States Stack
+        /*
         foreach (BaseState i in state) 
             Console.WriteLine(i);
         Console.WriteLine();
+        */
         
     }
 
@@ -45,7 +48,7 @@ class Game : Base {
         state.Peek().Render();
     }
 
-    public static void stateAdd(BaseState newState) {
+    public static void stateAdd(BaseState newState) {               //Adds a new State to the Stack
         state.Push(newState);
         newState.LoadContent();
         newState.Initialize();

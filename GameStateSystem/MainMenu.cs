@@ -26,10 +26,9 @@ namespace GameStateSystem {
         }
 
         public void Initialize() {
-            title = new Text("Game Name", fnt, 64);
-            //Console.WriteLine(title.GetLocalBounds().Width);
+            title = new Text("MAIN MENU", fnt, 64);
             title.Position = new Vector2f(win.Size.X / 2 - title.GetLocalBounds().Width/2, win.Size.Y / 4);
-            strt = new Button((int)win.Size.X / 2 - 150, (int)win.Size.Y / 2 -50, 300, 100, "MAIN MENU", fnt);
+            strt = new Button((int)win.Size.X / 2 - 150, (int)win.Size.Y / 2 -50, 300, 100, "PLAY", fnt);
         }
 
         public void LoadContent() {
@@ -38,7 +37,6 @@ namespace GameStateSystem {
         }
 
         public void Render() {
-            //title.Draw(win, RenderStates.Default);
             win.Draw(title);
             win.Draw(strt);
         }

@@ -29,9 +29,8 @@ namespace GameStateSystem {
 
         public void Initialize() {
             //Setup initial state
-            //Perhaps the game menu when fully done
             txt = new Text("PAUSED", local, 64) {
-                OutlineColor = Color.Red
+                FillColor = Color.Blue
             };
             //Console.WriteLine(title.GetLocalBounds().Width);
             txt.Position = new Vector2f(win.Size.X / 2 - txt.GetLocalBounds().Width / 2, win.Size.Y / 6);
@@ -41,6 +40,7 @@ namespace GameStateSystem {
         public void Tick() {
             //Updates the game
             win.Clear(new Color(51,51,51,50));
+            exitButton.highlight(win);
 
         }
 

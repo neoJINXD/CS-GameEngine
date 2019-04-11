@@ -13,7 +13,7 @@ abstract class Base {
     public Base(uint width, uint height, string title, Color color) {
         this.win = new RenderWindow(new VideoMode(width, height), title);
         this.backgroundColor = color;
-        win.SetFramerateLimit(60);
+        win.SetFramerateLimit(60);                          //FPS limited to 60
         win.Closed += OnClosed;
 
     }
@@ -33,12 +33,12 @@ abstract class Base {
             
         }
     }
-    protected abstract void LoadContent();  //Preload
-    protected abstract void Initialize();   //Setup
+    protected abstract void LoadContent();                  //Preload
+    protected abstract void Initialize();                   //Setup
 
-    protected abstract void Tick();         //Update
-    protected abstract void Render();       //Draw
-    private void OnClosed(object sender, EventArgs e) {
+    protected abstract void Tick();                         //Update
+    protected abstract void Render();                       //Draw
+    private void OnClosed(object sender, EventArgs e) {     //Closes the window 
         win.Close();
     }
 
